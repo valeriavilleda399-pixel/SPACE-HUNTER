@@ -1,0 +1,165 @@
+:root {
+    --neon-color: #00e6ff; /* Azul Espacial */
+    --card-bg: rgba(5, 10, 20, 0.95);
+}
+
+body, html {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background-color: #000;
+    font-family: 'Montserrat', sans-serif;
+    display: flex; justify-content: center; align-items: center;
+}
+body {
+    /* La ruta entre comillas debe ser donde está guardada tu imagen */
+    background-image: url('imagen/fondo.jpg');
+
+    /* Para que la imagen cubra toda la pantalla sin repetirse */
+    background-size: cover;
+
+    /* Para que la imagen no se mueva al hacer scroll */
+    background-attachment: fixed;
+
+    /* Para centrar la imagen */
+    background-position: center;
+
+    /* Evita que la imagen se duplique si es pequeña */
+    background-repeat: no-repeat;
+}
+/* Imagen de Fondo Estática */
+.space-background {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url('imagen/fondo2.jpg');
+    background-size: cover; background-position: center;
+    z-index: -2;
+}
+
+.space-overlay {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.8) 100%);
+    z-index: -1;
+}
+
+/* Tarjeta Principal */
+.menu-card {
+    background: var(--card-bg);
+    border: 2px solid var(--neon-color);
+    border-radius: 20px;
+    width: 90%; max-width: 420px;
+    padding: 30px; text-align: center;
+    box-shadow: 0 0 25px rgba(0, 230, 255, 0.3);
+    position: relative; color: white;
+    max-height: 85vh; overflow-y: auto;
+}
+
+.game-logo {
+    width: 150px; border-radius: 10px;
+    border: 2px solid var(--neon-color);
+    box-shadow: 0 0 15px var(--neon-color);
+}
+
+.game-title {
+    color: var(--neon-color);
+    text-shadow: 0 0 10px var(--neon-color);
+    letter-spacing: 2px; margin: 15px 0;
+}
+
+/* Botón Mute */
+.mute-btn {
+    position: absolute; top: 15px; right: 15px;
+    background: transparent; border: 1px solid var(--neon-color);
+    color: var(--neon-color); border-radius: 50%;
+    width: 40px; height: 40px; cursor: pointer;
+}
+
+/* Controles */
+.controls-section {
+    border-top: 1px solid rgba(0, 230, 255, 0.3);
+    margin-top: 20px; padding-top: 10px;
+}
+
+.control-row {
+    display: flex; align-items: center; gap: 15px;
+    background: rgba(0, 230, 255, 0.05);
+    margin: 8px 0; padding: 8px; border-radius: 5px;
+}
+
+.key {
+    border: 1px solid var(--neon-color);
+    padding: 2px 8px; border-radius: 3px; font-size: 0.8rem;
+}
+
+/* Info Boxes */
+.info-box {
+    padding: 12px; border-radius: 8px; margin: 10px 0; font-size: 0.85rem;
+}
+
+.coin-info { border: 1px solid #ffd700; color: #ffd700; }
+.alert-box { border: 1px solid #ff4444; color: #ff4444; text-align: left; }
+
+/* Botones */
+.btn {
+    width: 100%; padding: 12px; margin: 8px 0;
+    border-radius: 25px; cursor: pointer; font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-start {
+    background: var(--neon-color); border: none; color: #000;
+}
+
+.btn-credits {
+    background: transparent; border: 1px solid var(--neon-color); color: var(--neon-color);
+}
+
+/* Modal */
+.modal {
+    display: none; position: fixed; z-index: 100;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    background: #050a15; margin: 10% auto; padding: 25px;
+    border: 1px solid var(--neon-color); width: 80%; max-width: 500px;
+    color: white; border-radius: 15px; text-align: left;
+}
+
+.close { float: right; cursor: pointer; font-size: 24px; color: var(--neon-color); }
+/* 1. Estilo para navegadores basados en Webkit (Chrome, Edge, Safari) */
+
+/* El contenedor de la barra */
+.menu-card::-webkit-scrollbar {
+    width: 8px; /* Un poco más delgada para que sea elegante */
+}
+
+/* El fondo de la barra (el carril) */
+.menu-card::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3); /* Casi transparente */
+    border-radius: 10px;
+    margin: 10px; /* Separación de los bordes */
+}
+
+/* La parte que se mueve (el indicador) */
+.menu-card::-webkit-scrollbar-thumb {
+    background: var(--neon-color); /* El azul neón que definimos */
+    border-radius: 10px;
+    /* Efecto de brillo neón en el scroll */
+    box-shadow: 0 0 10px var(--neon-color); 
+    border: 2px solid rgba(0, 0, 0, 0.2); /* Un pequeño borde para contraste */
+}
+
+/* Cuando pasas el mouse sobre el scroll */
+.menu-card::-webkit-scrollbar-thumb:hover {
+    background: #ffffff; /* Se vuelve blanca al tocarla */
+    box-shadow: 0 0 15px #ffffff;
+}
+
+/* 2. Estilo para Firefox (Es más limitado, pero ayuda) */
+.menu-card {
+    scrollbar-width: thin;
+    scrollbar-color: var(--neon-color) rgba(0, 0, 0, 0.3);
+}

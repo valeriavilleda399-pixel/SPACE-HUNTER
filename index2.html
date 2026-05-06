@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Hunter - Menú Principal</title>
+    
+    <link rel="icon" type="image/png" href="imagen/icono.png">
+    
+    <link rel="stylesheet" href="style2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="space-background"></div>
+    <div class="space-overlay"></div>
+
+    <main class="menu-card">
+        
+        <button class="mute-btn" id="btn-audio">
+            <span class="icon">🔇</span>
+        </button>
+
+        <div class="logo-container">
+            <img src="imagen/logo.png" alt="Space Hunter Logo" class="game-logo">
+        </div>
+
+        <h1 class="game-title">SPACE HUNTER 3D</h1>
+        <p class="game-subtitle">¡Explora y sobrevive en el vacío!</p>
+
+        <section class="controls-section">
+            <h3 class="section-title">CONTROLES</h3>
+            <div class="control-row">
+                <div class="keys">
+                    <span class="key">←</span>
+                    <span class="key">→</span>
+                </div>
+                <p>Moverse entre carriles</p>
+            </div>
+            <div class="control-row">
+                <div class="keys">
+                    <span class="key">SPACE</span>
+                </div>
+                <p>Salto / Propulsión</p>
+            </div>
+            
+        </section>
+
+        <div class="info-box coin-info">
+            Cada cristal recolectado te da 10 puntos.
+        </div>
+
+        <div class="info-box alert-box">
+            <span class="alert-icon">⚠️</span>
+            <div>
+                <strong>¡ADVERTENCIA!</strong><br>
+                
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-start" onclick="location.href='index.html'">START GAME</button>
+            <button class="btn btn-credits" onclick="openCredits()">CRÉDITOS</button>
+        </div>
+    </main>
+
+    <div id="credits-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCredits()">&times;</span>
+            <h1 class="credits-title">CRÉDITOS</h1>
+            
+            <div class="credits-section">
+                <h3>DESARROLLADORES</h3>
+                <div class="dev-card">
+                    <strong>Valeria Abigail Villeda Hernández</strong>
+                    <p>NC: 24200103 - 3.5 3D</p>
+                </div>
+              
+            </div>
+
+            <div class="credits-section">
+                <h3>TECNOLOGÍAS</h3>
+                <div class="tech-list">
+                    <p>• Three.js (Gráficos 3D)</p>
+                    <p>• WebGL API</p>
+                    <p>• HTML5 & CSS3</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="musica-fondo" loop>
+        <source src="musica/musica_espacial2.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script2.js"></script>
+</body>
+</html>
