@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Space Hunter - Muchos Obstáculos | Valeria Abigail Villeda Hernández</title>
+    <title>Space Hunter - Práctica Integradora | Valeria Abigail Villeda Hernández</title>
     <style>
         body { margin: 0; overflow: hidden; background: #000; font-family: 'Orbitron', 'Courier New', monospace; }
         #ui-bottom {
@@ -423,21 +423,19 @@
         // MUCHOS OBSTÁCULOS - CONFIGURACIÓN MEJORADA
         // ==============================================================
         function getObstacleSpawnDelay() {
-            // Delay base muy bajo para que aparezcan muchos asteroides
-            let baseDelay = 300; // MUCHO MÁS RÁPIDO que antes (era 900)
+            let baseDelay = 300;
             let reduction = (difficultyLevel - 1) * 15;
             return Math.max(150, baseDelay - reduction);
         }
         
         function getObstacleSpawnCount() {
-            // Cantidad de asteroides por spawn - aumenta con dificultad
             let baseCount = 2;
             let extra = Math.floor(difficultyLevel / 2);
             return Math.min(baseCount + extra, 6);
         }
         
         function restartEnemySpawnInterval() {
-            if (enemySpawnIntervalId) clearInterval(enemySempornIntervalId);
+            if (enemySpawnIntervalId) clearInterval(enemySpawnIntervalId);
             
             const delay = getEnemySpawnDelay();
             enemySpawnIntervalId = setInterval(() => {
@@ -514,23 +512,20 @@
         const texLoader = new THREE.TextureLoader();
         const rockTex = texLoader.load('assets/textures/metorito.jpg');
         
-        // Diferentes geometrías para variedad de asteroides
         const rockGeometries = [
             new THREE.DodecahedronGeometry(45, 0),
             new THREE.IcosahedronGeometry(42, 0),
             new THREE.OctahedronGeometry(48),
             new THREE.TetrahedronGeometry(50),
-            new THREE.SphereGeometry(40, 5, 5) // Low poly para rendimiento
+            new THREE.SphereGeometry(40, 5, 5)
         ];
         
         const rockMat = new THREE.MeshStandardMaterial({ map: rockTex, roughness: 0.8, metalness: 0.15 });
 
         function spawnObstacle() {
-            // Seleccionar geometría aleatoria para variedad
             const geoIndex = Math.floor(Math.random() * rockGeometries.length);
             const rock = new THREE.Mesh(rockGeometries[geoIndex], rockMat.clone());
             
-            // Escala aleatoria
             const scaleX = 1.2 + Math.random() * 1.2;
             const scaleY = 0.8 + Math.random() * 1.0;
             const scaleZ = 0.8 + Math.random() * 1.2;
@@ -539,14 +534,12 @@
             rock.castShadow = true;
             rock.receiveShadow = false;
             
-            // Posición aleatoria en un área más amplia
             rock.position.set(
-                (Math.random() - 0.5) * 7000,  // Rango X más amplio
-                (Math.random() - 0.5) * 5000,  // Rango Y más amplio
-                -12000 - Math.random() * 4000   // Profundidad variada
+                (Math.random() - 0.5) * 7000,
+                (Math.random() - 0.5) * 5000,
+                -12000 - Math.random() * 4000
             );
             
-            // Rotación inicial aleatoria
             rock.rotation.x = Math.random() * Math.PI * 2;
             rock.rotation.y = Math.random() * Math.PI * 2;
             rock.rotation.z = Math.random() * Math.PI * 2;
@@ -683,6 +676,11 @@
             enemyBullets.length = 0;
             
             player.position.set(0, 0, 200);
+            
+            // Limpiar intervalos viejos antes de reiniciar
+            if (enemySpawnIntervalId) clearInterval(enemySpawnIntervalId);
+            if (obstacleIntervalId) clearInterval(obstacleIntervalId);
+            
             restartEnemySpawnInterval();
             restartObstacleSpawnInterval();
         }
@@ -712,7 +710,6 @@
             shipLight.position.copy(player.position);
             shipLight.target.position.set(player.position.x, player.position.y, player.position.z - 1000);
             
-            // Actualización de obstáculos - Muchos asteroides
             for(let i = 0; i < obstacles.length; i++) {
                 const obs = obstacles[i];
                 obs.position.z += 28 + (speedZ * 0.4);
@@ -720,7 +717,6 @@
                 obs.rotation.y += 0.01;
                 obs.rotation.z += 0.008;
                 
-                // Colisión con el jugador
                 if (obs.position.distanceTo(player.position) < 130) {
                     handleCollision();
                     scene.remove(obs);
@@ -729,7 +725,6 @@
                     continue;
                 }
                 
-                // Eliminar si pasa muy lejos
                 if(obs.position.z > 800) { 
                     scene.remove(obs); 
                     obstacles.splice(i, 1); 
@@ -737,7 +732,6 @@
                 }
             }
 
-            // Actualizar enemigos
             for(let i = 0; i < enemies.length; i++) {
                 const e = enemies[i];
                 e.mesh.position.z += e.speed + (speedZ * 0.25);
@@ -757,7 +751,6 @@
                 }
             }
 
-            // Colisiones de Balas del jugador
             for(let i = 0; i < playerBullets.length; i++) {
                 const b = playerBullets[i];
                 b.position.z -= 120;
@@ -786,7 +779,6 @@
                 }
             }
 
-            // Balas enemigas
             for(let i = 0; i < enemyBullets.length; i++) {
                 const eb = enemyBullets[i];
                 eb.position.z += 40;
@@ -803,7 +795,6 @@
                 }
             }
             
-            // Mover estrellas para efecto dinámico
             stars.rotation.y += 0.0003;
             stars.rotation.x += 0.0001;
         }
